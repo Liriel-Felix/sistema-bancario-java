@@ -3,7 +3,6 @@ package service;
 import model.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class BancoService implements Banco {
 
@@ -61,15 +60,4 @@ public class BancoService implements Banco {
     public void gerarRelatorio() {
         // Implementar
     }
-
-    private Optional<Conta> buscarConta(int numeroConta) {
-        // Implementar
-        return Optional.empty();
-    }
-
-    private Optional<Cliente> buscarCliente(String cpf) {
-        // Implementar
-        return Optional.empty();
-    }
 }
-
