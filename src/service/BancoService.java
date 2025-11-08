@@ -182,9 +182,11 @@ public class BancoService implements Banco {
 
             System.out.println("Lista de contas cadastradas (ordem decrescente de saldos):");
             for (Conta conta : contas) {
-                System.out.println("Conta nº " + conta.getNumero() + 
-                               " | Cliente: " + conta.getCliente().getNome() +
-                               " | Saldo: R$ " + conta.getSaldo());
+                String tipo = (conta instanceof ContaPoupanca) ? "Poupança" : "Corrente";
+                System.out.println("Tipo: " + tipo + 
+                                   " | Conta nº " + conta.getNumero() + 
+                                   " | Cliente: " + conta.getCliente().getNome() +
+                                   " | Saldo: R$ " + conta.getSaldo());
             }
         }
         return contas;
