@@ -2,6 +2,7 @@ package service;
 
 import model.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class BancoService implements Banco {
@@ -177,7 +178,9 @@ public class BancoService implements Banco {
         if (contas.isEmpty()) {
             System.out.println("Nenhuma conta cadastrada.");
         } else {
-            System.out.println("Lista de contas cadastradas:");
+            contas.sort(Comparator.comparingDouble(Conta::getSaldo).reversed());
+
+            System.out.println("Lista de contas cadastradas (ordem decrescente de saldos):");
             for (Conta conta : contas) {
                 System.out.println("Conta nº " + conta.getNumero() + 
                                " | Cliente: " + conta.getCliente().getNome() +
@@ -196,15 +199,25 @@ public class BancoService implements Banco {
 
         System.out.println("===== RELATÓRIO DO BANCO =====");
         double saldoTotal = 0.0;
+        double saldoPoupanca = 0.0;
+        double saldoCorrente = 0.0;
 
         for (Conta conta : contas) {
             System.out.println("Conta nº " + conta.getNumero() + 
                            " | Cliente: " + conta.getCliente().getNome() +
                            " | Saldo: R$ " + conta.getSaldo());
             saldoTotal += conta.getSaldo();
+
+            if (conta instanceof ContaPoupanca) {
+                saldoPoupanca += conta.getSaldo();
+            } else {
+                saldoCorrente += conta.getSaldo();
+            }
         }
 
         System.out.println("---------------------------------");
+        System.out.println("Saldo total das contas Corrente: R$ " + saldoCorrente);
+        System.out.println("Saldo total das contas Poupança: R$ " + saldoPoupanca);
         System.out.println("Total de contas: " + contas.size());
         System.out.println("Saldo total do banco: R$ " + saldoTotal);
         System.out.println("=================================\n");
