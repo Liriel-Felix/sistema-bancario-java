@@ -17,7 +17,7 @@ public class BancoService implements Banco {
 
     @Override
     public void cadastrarCliente(String nome, String cpf) {
-        // Verifica se o cliente já existe pelo CPF
+        
         for (Cliente c : clientes) {
             if (c.getCpf().equals(cpf)) {
                 System.out.println("Cliente com CPF " + cpf + " já está cadastrado.");
@@ -25,7 +25,7 @@ public class BancoService implements Banco {
             }
         }
         
-        // Cria e adiciona o novo cliente
+        
         Cliente novoCliente = new Cliente(nome, cpf);
         clientes.add(novoCliente);
 
@@ -34,7 +34,7 @@ public class BancoService implements Banco {
 
     @Override
     public void cadastrarConta(Conta conta) {
-        // Verifica se o cliente da conta existe
+        
         Cliente cliente = conta.getCliente();
         boolean clienteExiste = false;
 
@@ -50,7 +50,7 @@ public class BancoService implements Banco {
             return;
         }
 
-        // Verifica se já existe uma conta com o mesmo número
+        
         for (Conta c : contas) {
             if (c.getNumero() == conta.getNumero()) {
                 System.out.println("Já existe uma conta com o número " + conta.getNumero());
@@ -58,7 +58,7 @@ public class BancoService implements Banco {
             }
         }
 
-        // Adiciona a nova conta
+        
         contas.add(conta);
         System.out.println("Conta número " + conta.getNumero() + " cadastrada com sucesso!");
     }
@@ -70,7 +70,7 @@ public class BancoService implements Banco {
             return;
         }
 
-        // Busca a conta pelo número
+        
         for (Conta conta : contas) {
             if (conta.getNumero() == numeroConta) {
                 conta.depositar(valor);
@@ -89,7 +89,7 @@ public class BancoService implements Banco {
             return;
         }
 
-        // Busca a conta pelo número
+        
         for (Conta conta : contas) {
             if (conta.getNumero() == numeroConta) {
                 boolean sucesso = conta.sacar(valor);
@@ -116,7 +116,7 @@ public class BancoService implements Banco {
         Conta origem = null;
         Conta destino = null;
 
-        // Localiza as contas
+        
         for (Conta conta : contas) {
             if (conta.getNumero() == contaOrigem) {
                 origem = conta;
@@ -125,7 +125,7 @@ public class BancoService implements Banco {
             }
         }
 
-        // Verificações básicas
+        
         if (origem == null) {
             System.out.println("Conta de origem não encontrada.");
             return;
@@ -136,7 +136,7 @@ public class BancoService implements Banco {
             return;
         }
 
-        // Tenta realizar o saque na conta de origem
+        
         if (origem.sacar(valor)) {
             destino.depositar(valor);
             System.out.println("Transferência de R$ " + valor + " realizada da conta " +
