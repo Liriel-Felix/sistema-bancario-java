@@ -26,5 +26,3 @@ public abstract class Conta {
     public abstract void depositar(double valor);
     public abstract boolean sacar(double valor);
 }
-
-// Open/Closed (SOLID) - novos tipos de conta podem ser criados sem alterar a classe base, apenas herdando.

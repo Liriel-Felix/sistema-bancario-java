@@ -17,5 +17,3 @@ public class Cliente {
         return cpf;
     }
 }
-
-// Single Responsability (SOLID) - cuida apenas dos dados dos clientes.
