@@ -13,12 +13,18 @@ public class ContaPoupanca extends Conta {
     }
 
     @Override
-    public void depositar(double valor) {}
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+        }
+    }
 
     @Override
     public boolean sacar(double valor) {
+        if (valor > 0 && saldo >= valor) {
+            saldo -= valor;
+            return true;
+        }
         return false;
     }
 }
-
-// Liskov Substitution (SOLID) - a classe pode substituir a classe base Conta sem quebrar o sistema.
